@@ -1,0 +1,14 @@
+.gradle/
+build/
+*/build/
+out/
+.idea/
+*.iml
+local.properties
+udmurt_users.json
+.DS_Store
+*.log
+crash.log
+*.apk
+captures/
+android/libs/

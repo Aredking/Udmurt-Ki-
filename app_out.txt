@@ -1,0 +1,36 @@
+[trace] create: begin
+[trace] create: server=http://localhost:8080
+[trace] create: assets ok
+[trace] create: users ok
+[trace] create: login screen shown
+[trace] login: submit name='Хлебов Николай Владимирович' passLen=10
+[trace] login: auth failed
+[trace] login: submit name='Хлебов Николай Владимирович' passLen=10
+[trace] login: auth failed
+[trace] register: submit name='Хлебов Николай Владимирович'
+[trace] register: submit name='Хлебов Николай Владимирович'
+[trace] register: submit name='Хлебов Николай Владимирович'
+[trace] sync: start user=Хлебов Николай Владимирович
+[trace] sync: register Хлебов Николай Владимирович role=school
+[trace] sync: register err='Сервер недоступен'
+[trace] register: sync callback, token=null
+FATAL ERROR in native method: Thread[#23,NetThread0,5,main]: No context is current or a function that is not available in the current context was called. The JVM will abort execution.
+	at org.lwjgl.opengl.GL11C.glViewport(Native Method)
+	at org.lwjgl.opengl.GL11.glViewport(GL11.java:7968)
+	at com.badlogic.gdx.backends.lwjgl3.Lwjgl3GL20.glViewport(Lwjgl3GL20.java:839)
+	at com.badlogic.gdx.graphics.glutils.HdpiUtils.glViewport(HdpiUtils.java:67)
+	at com.badlogic.gdx.utils.viewport.Viewport.apply(Viewport.java:49)
+	at com.badlogic.gdx.utils.viewport.ExtendViewport.update(ExtendViewport.java:93)
+	at com.badlogic.gdx.scenes.scene2d.Stage.<init>(Stage.java:116)
+	at com.udmurt.learn.screen.BaseScreen.<init>(BaseScreen.java:37)
+	at com.udmurt.learn.screen.MainMenuScreen.<init>(MainMenuScreen.java:22)
+	at com.udmurt.learn.screen.RegisterScreen$3.run(RegisterScreen.java:163)
+	at com.udmurt.learn.UdmurtGame$2.onError(UdmurtGame.java:183)
+	at com.udmurt.learn.data.ServerApi$1.failed(ServerApi.java:106)
+	at com.badlogic.gdx.net.NetJavaImpl$2.run(NetJavaImpl.java:239)
+	at java.util.concurrent.Executors$RunnableAdapter.call(java.base@23/Executors.java:572)
+	at java.util.concurrent.FutureTask.run(java.base@23/FutureTask.java:317)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(java.base@23/ThreadPoolExecutor.java:1144)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(java.base@23/ThreadPoolExecutor.java:642)
+	at java.lang.Thread.runWith(java.base@23/Thread.java:1588)
+	at java.lang.Thread.run(java.base@23/Thread.java:1575)

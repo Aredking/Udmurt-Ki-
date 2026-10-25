@@ -1,0 +1,29 @@
+<config>
+    <executableName>UdmurtLearn</executableName>
+    <mainClass>com.udmurt.learn.ios.IOSLauncher</mainClass>
+    <os>ios</os>
+    <arch>arm64</arch>
+    <resources>
+        <resource>
+            <directory>../assets</directory>
+            <includes></includes>
+        </resource>
+    </resources>
+    <frameworkPaths></frameworkPaths>
+    <frameworks>
+        <framework>UIKit</framework>
+        <framework>OpenGLES</framework>
+        <framework>QuartzCore</framework>
+        <framework>CoreGraphics</framework>
+        <framework>CoreMotion</framework>
+        <framework>AudioToolbox</framework>
+        <framework>AVFoundation</framework>
+        <framework>CoreText</framework>
+        <framework>Foundation</framework>
+    </frameworks>
+    <forceLinkClasses>
+        <pattern>com.badlogic.gdx.**</pattern>
+    </forceLinkClasses>
+    <libs>
+    </libs>
+</config>

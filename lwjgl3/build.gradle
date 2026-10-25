@@ -1,0 +1,53 @@
+plugins {
+    id 'application'
+}
+
+application {
+    mainClass = 'com.udmurt.learn.lwjgl3.Lwjgl3Launcher'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 17
+}
+
+sourceSets.main.resources.srcDirs += [ rootProject.file('assets').path ]
+
+dependencies {
+    implementation project(':core')
+    // Сервер запускается прямо внутри приложения (см. EmbeddedServer),
+    // поэтому его классы и зависимости входят в десктопную сборку.
+    implementation project(':server')
+    implementation "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
+    implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+    implementation "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
+}
+
+tasks.named('run') {
+    workingDir = rootProject.projectDir
+    ignoreExitValue = true
+    if (project.hasProperty('smokeMillis')) {
+        systemProperty 'udmurt.smokeMillis', project.property('smokeMillis')
+    }
+}
+
+// Build a runnable fat jar:  gradlew lwjgl3:dist
+tasks.register('dist', Jar) {
+    dependsOn classes
+    archiveBaseName = 'UdmurtLearn'
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    manifest {
+        attributes 'Main-Class': application.mainClass.get()
+    }
+    from sourceSets.main.output
+    dependsOn configurations.runtimeClasspath
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    exclude 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA', 'module-info.class'
+}

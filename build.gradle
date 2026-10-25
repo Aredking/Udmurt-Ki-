@@ -1,0 +1,15 @@
+allprojects {
+    group = 'com.udmurt.learn'
+    version = '1.0.0'
+
+    repositories {
+        mavenCentral()
+        google()
+    }
+}
+
+subprojects {
+    tasks.withType(JavaCompile).configureEach {
+        options.encoding = 'UTF-8'
+    }
+}

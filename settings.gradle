@@ -1,0 +1,29 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.name = 'UdmurtLearn'
+
+include 'core'
+include 'lwjgl3'
+include 'server'
+
+// Android is only wired in when an Android SDK is available, so that the
+// desktop build works out of the box on a machine without the SDK.
+def hasAndroidSdk = System.getenv('ANDROID_HOME') != null \
+        || System.getenv('ANDROID_SDK_ROOT') != null \
+        || file('local.properties').exists()
+if (hasAndroidSdk) {
+    include 'android'
+}
+
+// The iOS (RoboVM) module can only be built on macOS. It is still shipped in
+// the repository; enable it explicitly with -PenableIos.
+def isMac = System.getProperty('os.name').toLowerCase().contains('mac')
+if (isMac || startParameter.projectProperties.containsKey('enableIos')) {
+    include 'ios'
+}
